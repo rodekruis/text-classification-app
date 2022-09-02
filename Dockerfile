@@ -1,5 +1,5 @@
 # python base image in the container from Docker Hub
-FROM tensorflow/tensorflow:latest-gpu
+FROM pytorch/pytorch:latest
 
 #set up environment
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl
