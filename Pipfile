@@ -9,6 +9,7 @@ uvicorn = "*"
 transformers = "*"
 sentencepiece = "*"
 python-dotenv = "*"
+torch = "*"
 
 [dev-packages]
 
