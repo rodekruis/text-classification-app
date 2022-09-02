@@ -4,6 +4,14 @@ FROM pytorch/pytorch:latest
 #set up environment
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl
 RUN apt-get install unzip
+RUN apt-get install -y git
+
+# install protobuf
+RUN apt install -y protobuf-compiler
+RUN git clone https://github.com/protocolbuffers/protobuf.git
+WORKDIR /protobuf/python
+RUN python setup.py build
+RUN python setup.py install
 
 # copy files to the /app folder in the container
 COPY ./main.py /app/main.py
@@ -19,8 +27,8 @@ ENV PORT=8000
 EXPOSE 8000
 
 # define the model that will be loaded
-ENV MODEL_ORG="MoritzLaurer"
-ENV MODEL_NAME="DeBERTa-v3-base-mnli-fever-anli"
+ENV MODEL_ORG="facebook"
+ENV MODEL_NAME="bart-large-mnli"
 
 # execute the command python main.py (in the WORKDIR) to start the app
 CMD ["python", "main.py"]
