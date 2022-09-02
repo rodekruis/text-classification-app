@@ -1,23 +1,18 @@
 # python base image in the container from Docker Hub
-FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04
+FROM tensorflow/tensorflow:latest-gpu
 
 #set up environment
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl
 RUN apt-get install unzip
-RUN apt-get -y install python3
-RUN apt-get -y install python3-pip
 
 # copy files to the /app folder in the container
 COPY ./main.py /app/main.py
-COPY ./Pipfile /app/Pipfile
-COPY ./Pipfile.lock /app/Pipfile.lock
 
 # set the working directory in the container to be /app
 WORKDIR /app
 
-# install the packages from the Pipfile in the container
-RUN pip install pipenv
-RUN pipenv install --system --deploy --ignore-pipfile
+# install the packages
+RUN pip install fastapi uvicorn transformers sentencepiece python-dotenv
 
 # expose the port that uvicorn will run the app on
 ENV PORT=8000
@@ -28,4 +23,4 @@ ENV MODEL_ORG="MoritzLaurer"
 ENV MODEL_NAME="DeBERTa-v3-base-mnli-fever-anli"
 
 # execute the command python main.py (in the WORKDIR) to start the app
-CMD ["python3", "main.py"]
+CMD ["python", "main.py"]
