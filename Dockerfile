@@ -4,14 +4,6 @@ FROM pytorch/pytorch:latest
 #set up environment
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl
 RUN apt-get install unzip
-RUN apt-get install -y git
-
-# install protobuf
-RUN apt install -y protobuf-compiler
-RUN git clone https://github.com/protocolbuffers/protobuf.git
-WORKDIR /protobuf/python
-RUN python setup.py build
-RUN python setup.py install
 
 # copy files to the /app folder in the container
 COPY ./main.py /app/main.py
