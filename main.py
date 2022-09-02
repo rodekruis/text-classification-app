@@ -2,7 +2,7 @@ import uvicorn
 from typing import Union
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from transformers import AutoTokenizer, TFAutoModelForSequenceClassification, pipeline
 import os
 from enum import Enum
 from dotenv import load_dotenv
@@ -11,7 +11,7 @@ load_dotenv()
 # Initialize model
 modelname = os.environ["MODEL_ORG"] + "/" + os.environ["MODEL_NAME"]
 tokenizer = AutoTokenizer.from_pretrained(modelname)
-model = AutoModelForSequenceClassification.from_pretrained(modelname)
+model = TFAutoModelForSequenceClassification.from_pretrained(modelname)
 classifier = pipeline("zero-shot-classification", model=model, tokenizer=tokenizer)
 
 
