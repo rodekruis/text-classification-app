@@ -36,7 +36,7 @@ port = os.environ["PORT"]
 app = FastAPI(
     title="text-classification-app",
     description="Zero-shot text classification. \n"
-                "Built with love by [NLRC 510](https://www.510.global/). See [the project on GitHub](https://github.com/rodekruis/text-classification-app).",
+                "Built with love by [NLRC 510](https://www.510.global/). See [the project on GitHub](https://github.com/rodekruis/text-classification-app) or [contact us](mailto:support@510.global).",
     version="0.0.1",
     license_info={
         "name": "AGPL-3.0 license",
