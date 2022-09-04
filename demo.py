@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 sns.set_theme(style="whitegrid")
 
 model_req = requests.get('http://language-model.westeurope.cloudapp.azure.com/model').json()
