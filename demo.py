@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 sns.set_theme(style="whitegrid")
 
-model_req = requests.get('text-classification.westeurope.cloudapp.azure.com/model').json()
+model_req = requests.get('http://text-classification.westeurope.cloudapp.azure.com/model').json()
 
 st.header("text-classification-app")
 st.markdown(f"Use language models to classify text. Currently powered by [{model_req['model_name']}]({model_req['source']}).")
