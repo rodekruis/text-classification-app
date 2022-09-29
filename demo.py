@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 sns.set_theme(style="whitegrid")
 
-model_req = requests.get('http://language-model.westeurope.cloudapp.azure.com/model').json()
+model_req = requests.get('text-classification.westeurope.cloudapp.azure.com/model').json()
 
 st.header("text-classification-app")
 st.markdown(f"Use language models to classify text. Currently powered by [{model_req['model_name']}]({model_req['source']}).")
@@ -14,7 +14,7 @@ input_labels = st.text_area('Class labels (comma-separated)', 'urgent, not urgen
 submit = st.button('Classify')
 if submit:
 
-    url = 'http://language-model.westeurope.cloudapp.azure.com/classify/'
+    url = 'http://text-classification.westeurope.cloudapp.azure.com/classify/'
     payload = {
         'text': input_text,
         'labels': input_labels.split(','),
